@@ -9,6 +9,11 @@ extension ExtString on String {
     final emailRegExp = RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
     return emailRegExp.hasMatch(this);
   }
+
+  bool get isValidName {
+    final nameRegExp =  RegExp(r"^[a-zA-Z]");
+    return nameRegExp.hasMatch(this);
+  }
 }
 
 class RegisterScreen extends StatefulWidget {
@@ -59,100 +64,124 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Column(
                   children: [
-                    const Center(
+                    const Flexible(
                       child: SizedBox(
-                        height: 200.0,
+                        height: 120.0,
+                        child: Text('Factory', style: TextStyle(fontSize: 36,),)
                         // child: Image.asset('images/logo.jpg'),
-                        child: Text('Factory Name', style: TextStyle(fontSize: 36),)
                       ),
                     ),
                     Form(
                       key: _key,
-                      child: Column(
-                        children: <Widget>[
-                          TextFormField(
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return '*Required Company Name';
-                              }
-                              return null;
-                            },
-                            decoration: kTextFieldDecoration.copyWith(
-                                hintText: 'Enter your Company name'),
-                          ),
-                          const SizedBox(height: 10.0),
-                          TextFormField(
-                            keyboardType: TextInputType.emailAddress,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return '*Required Company Email';
-                              } else if (!value.isValidEmail) {
-                                return '*Please enter valid email address';
-                              }
-                              return null;
-                            },
-                            decoration: kTextFieldDecoration.copyWith(
-                                hintText: 'Enter Company email address'),
-                          ),
-                          const SizedBox(height: 10.0),
-                          TextFormField(
-                            obscureText: true,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return '*Password cannot be empty';
-                              }
-                              return null;
-                            },
-                            decoration: kTextFieldDecoration.copyWith(
-                                hintText: 'Enter your password'),
-                          ),
-                          const SizedBox(height: 10.0),
-                          TextFormField(
-                            decoration: kTextFieldDecoration.copyWith(
-                                hintText: 'Account Nickname (Optional)'),
-                          ),
-                          const SizedBox(height: 15.0),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding:
-                                const EdgeInsets.symmetric(vertical: 16.0),
-                                child: Material(
-                                  color: const Color(0xff21b409),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(30.0)),
-                                  elevation: 5.0,
-                                  child: MaterialButton(
-                                    onPressed: () async {
-                                      if (_key.currentState!.validate()) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          const SnackBar(
-                                              content: Text('Processing Data')),
-                                        );
-                                        var response =
-                                        await http.post(url, body: {});
-                                        print(
-                                            'Response status: ${response.statusCode}');
-                                        print(
-                                            'Response body: ${response.body}');
-                                      }
-                                    },
-                                    minWidth: 200.0,
-                                    height: 42.0,
-                                    child: const Text(
-                                      'Register',
-                                      style: TextStyle(
-                                        color: Colors.white,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: <Widget>[
+                            TextFormField(
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return '*Required Company Name';
+                                }
+                                return null;
+                              },
+                              decoration: kTextFieldDecoration.copyWith(
+                                  hintText: 'Enter Company name', labelText: 'Company Name'),
+                            ),
+                            const SizedBox(height: 10.0),
+                            TextFormField(
+                              keyboardType: TextInputType.emailAddress,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return '*Required Company Email';
+                                } else if (!value.isValidEmail) {
+                                  return '*Please enter valid Email';
+                                }
+                                return null;
+                              },
+                              decoration: kTextFieldDecoration.copyWith(
+                                  hintText: 'Enter Company Email', labelText: 'Company Email'),
+                            ),
+                            const SizedBox(height: 10.0),
+                            TextFormField(
+                              obscureText: true,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return '*GST cannot be empty';
+                                }
+                                return null;
+                              },
+                              decoration: kTextFieldDecoration.copyWith(
+                                  hintText: 'Enter GST', labelText: 'GST'),
+                            ),
+                            const SizedBox(height: 10.0),
+                            TextFormField(
+                              obscureText: true,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return '*Please Enter Street/Plot';
+                                }
+                                return null;
+                              },
+                              decoration: kTextFieldDecoration.copyWith(
+                                  hintText: 'Street No/Plot No', labelText: 'Street No/ Plot No'),
+                            ),
+                            const SizedBox(height: 10.0),
+                            TextFormField(
+                              decoration: kTextFieldDecoration.copyWith(
+                                  hintText: 'City', labelText: 'City'),
+                            ),
+                            const SizedBox(height: 10.0),
+                            TextFormField(
+                              decoration: kTextFieldDecoration.copyWith(
+                                  hintText: 'State', labelText: 'State'),
+                            ),
+                            const SizedBox(height: 10.0),
+                            TextFormField(
+                              decoration: kTextFieldDecoration.copyWith(
+                                  hintText: 'Pin code', labelText: 'Pin code'),
+                            ),
+                            const SizedBox(height: 15.0),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding:
+                                  const EdgeInsets.symmetric(vertical: 16.0),
+                                  child: Material(
+                                    color: const Color(0xff21b409),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(30.0)),
+                                    elevation: 5.0,
+                                    child: MaterialButton(
+                                      onPressed: () async {
+                                        if (_key.currentState!.validate()) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            const SnackBar(
+                                                content: Text('Processing Data')),
+                                          );
+                                          var response =
+                                          await http.post(url, body: {});
+                                          print(
+                                              'Response status: ${response.statusCode}');
+                                          print(
+                                              'Response body: ${response.body}');
+                                        }
+                                      },
+                                      minWidth: 200.0,
+                                      height: 42.0,
+                                      child: const Text(
+                                        'Register',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -165,3 +194,4 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 }
+
