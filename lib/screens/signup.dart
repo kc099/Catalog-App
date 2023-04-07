@@ -39,159 +39,103 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('Catalog App'),),
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: Row(
-                children: <Widget>[
-                  GestureDetector(
-                    child: const Icon(
-                      Icons.chevron_left,
-                      size: 36,
-                    ),
-                    onTap: () {
-                      Navigator.pop(context);
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+          child: Form(
+            key: _key,
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[ TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return '*Required Company Name';
+                    }
+                    return null;
+                  },
+                  decoration: kTextFieldDecoration.copyWith(
+                      hintText: 'Enter Company name', labelText: 'Company Name'),
+                ),
+                const SizedBox(height: 10.0),
+                  TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return '*Required Email';
+                      }
+                      return null;
                     },
+                    decoration: kTextFieldDecoration.copyWith(
+                        hintText: 'Enter Company Email', labelText: 'Company Email'),
                   ),
+                  const SizedBox(height: 10.0),
+                  TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return '*Required GST';
+                      }
+                      return null;
+                    },
+                    decoration: kTextFieldDecoration.copyWith(
+                        hintText: 'Enter GST Number', labelText: 'GST'),
+                  ),
+                  const SizedBox(height: 10.0),
+                  TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return '*Required Street No/ Plot No';
+                      }
+                      return null;
+                    },
+                    decoration: kTextFieldDecoration.copyWith(
+                        hintText: 'Street No/ Plot No', labelText: 'Street No/ Plot No'),
+                  ),
+                  const SizedBox(height: 10.0),
+                  TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return '*Required City';
+                      }
+                      return null;
+                    },
+                    decoration: kTextFieldDecoration.copyWith(
+                        hintText: 'Enter City', labelText: 'City'),
+                  ),
+                  const SizedBox(height: 10.0),
+                  TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return '*Required State';
+                      }
+                      return null;
+                    },
+                    decoration: kTextFieldDecoration.copyWith(
+                        hintText: 'Enter State', labelText: 'State'),
+                  ),
+                  const SizedBox(height: 10.0),
+                  TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return '*Required Pin code';
+                      }
+                      return null;
+                    },
+                    decoration: kTextFieldDecoration.copyWith(
+                        hintText: 'Enter Pin code', labelText: 'Pin code'),
+                  ),
+                  const SizedBox(height: 10.0),
+                  ElevatedButton(onPressed: (){_key.currentState!.validate();}, child: const Text('Register'))
                 ],
               ),
             ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Column(
-                  children: [
-                    const Flexible(
-                      child: SizedBox(
-                        height: 120.0,
-                        child: Text('Factory', style: TextStyle(fontSize: 36,),)
-                        // child: Image.asset('images/logo.jpg'),
-                      ),
-                    ),
-                    Form(
-                      key: _key,
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: <Widget>[
-                            TextFormField(
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return '*Required Company Name';
-                                }
-                                return null;
-                              },
-                              decoration: kTextFieldDecoration.copyWith(
-                                  hintText: 'Enter Company name', labelText: 'Company Name'),
-                            ),
-                            const SizedBox(height: 10.0),
-                            TextFormField(
-                              keyboardType: TextInputType.emailAddress,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return '*Required Company Email';
-                                } else if (!value.isValidEmail) {
-                                  return '*Please enter valid Email';
-                                }
-                                return null;
-                              },
-                              decoration: kTextFieldDecoration.copyWith(
-                                  hintText: 'Enter Company Email', labelText: 'Company Email'),
-                            ),
-                            const SizedBox(height: 10.0),
-                            TextFormField(
-                              obscureText: true,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return '*GST cannot be empty';
-                                }
-                                return null;
-                              },
-                              decoration: kTextFieldDecoration.copyWith(
-                                  hintText: 'Enter GST', labelText: 'GST'),
-                            ),
-                            const SizedBox(height: 10.0),
-                            TextFormField(
-                              obscureText: true,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return '*Please Enter Street/Plot';
-                                }
-                                return null;
-                              },
-                              decoration: kTextFieldDecoration.copyWith(
-                                  hintText: 'Street No/Plot No', labelText: 'Street No/ Plot No'),
-                            ),
-                            const SizedBox(height: 10.0),
-                            TextFormField(
-                              decoration: kTextFieldDecoration.copyWith(
-                                  hintText: 'City', labelText: 'City'),
-                            ),
-                            const SizedBox(height: 10.0),
-                            TextFormField(
-                              decoration: kTextFieldDecoration.copyWith(
-                                  hintText: 'State', labelText: 'State'),
-                            ),
-                            const SizedBox(height: 10.0),
-                            TextFormField(
-                              decoration: kTextFieldDecoration.copyWith(
-                                  hintText: 'Pin code', labelText: 'Pin code'),
-                            ),
-                            const SizedBox(height: 15.0),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding:
-                                  const EdgeInsets.symmetric(vertical: 16.0),
-                                  child: Material(
-                                    color: const Color(0xff21b409),
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(30.0)),
-                                    elevation: 5.0,
-                                    child: MaterialButton(
-                                      onPressed: () async {
-                                        if (_key.currentState!.validate()) {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            const SnackBar(
-                                                content: Text('Processing Data')),
-                                          );
-                                          var response =
-                                          await http.post(url, body: {});
-                                          print(
-                                              'Response status: ${response.statusCode}');
-                                          print(
-                                              'Response body: ${response.body}');
-                                        }
-                                      },
-                                      minWidth: 200.0,
-                                      height: 42.0,
-                                      child: const Text(
-                                        'Register',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
+
+          ),
         ),
       ),
     );
   }
 }
+
+
 
