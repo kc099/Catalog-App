@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../screens/home.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem(
@@ -29,9 +30,14 @@ class ProductItem extends StatelessWidget {
           ),
           backgroundColor: Colors.black54,
         ),
-        child: Image.network(
-          imageurl,
-          fit: BoxFit.cover,
+        child: GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, HomeScreen.id);
+          },
+          child: Image.network(
+            imageurl,
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );

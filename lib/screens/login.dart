@@ -1,7 +1,6 @@
 import 'package:catalog/screens/home.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
-import '../screens/product_overview.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
