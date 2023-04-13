@@ -5,38 +5,19 @@ getDrawerWidget(int index, BuildContext context, Function updateState) {
   switch (index) {
     case 0:
       return _homeListView(context, updateState);
-  // break;
+    // break;
     case 1:
       return _profileView(context);
-  // break;
+    // break;
     case 2:
       return _profileView(context);
-  // break;
+    // break;
   }
 }
 
-Widget _homeListView(
-    BuildContext context, Function updateState) {
+Widget _homeListView(BuildContext context, Function updateState) {
   return Column(
     children: <Widget>[
-      Padding(
-        padding: const EdgeInsets.fromLTRB(18.0, 16.0, 16.0, 8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            const Text('hello'),
-            GestureDetector(
-              onTap: () {
-                print('add device');
-              },
-              child: const Icon(
-                Icons.add_circle_outlined,
-                size: 24.0,
-              ),
-            ),
-          ],
-        ),
-      ),
       Expanded(
         child: ListView(
           children: <Widget>[

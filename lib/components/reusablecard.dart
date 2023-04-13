@@ -1,3 +1,4 @@
+import 'package:catalog/screens/product_overview.dart';
 import 'package:flutter/material.dart';
 
 class ReusableCard extends StatelessWidget {
@@ -20,7 +21,7 @@ class ReusableCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return Container();
+              return ProductOverviewScreen();
             },
           ),
         );

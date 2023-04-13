@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
 import '../components/rounded_button.dart';
-import 'package:http/http.dart' as http;
+// import 'package:http/http.dart' as http;
 
 // class extending dart <String> datatype.
 // These methods can be called on strings used in this file.
@@ -12,7 +12,7 @@ extension ExtString on String {
   }
 
   bool get isValidName {
-    final nameRegExp =  RegExp(r"^[a-zA-Z]");
+    final nameRegExp = RegExp(r"^[a-zA-Z]");
     return nameRegExp.hasMatch(this);
   }
 }
@@ -40,7 +40,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Catalog App'), backgroundColor: Colors.deepPurpleAccent),
+      appBar: AppBar(
+          title: const Text('Catalog App'),
+          backgroundColor: Colors.deepPurpleAccent),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
@@ -52,26 +54,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 padding: const EdgeInsets.symmetric(vertical: 5.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[ TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return '*Required Company Name';
-                      }
-                      return null;
-                    },
-                    decoration: kTextFieldDecoration.copyWith(
-                        hintText: 'Enter Company name', labelText: 'Company Name'),
-                  ),
-                  const SizedBox(height: 10.0),
+                  children: <Widget>[
                     TextFormField(
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return '*Required Email';
+                          return '*Required Company Name';
+                        } else if (!value.isValidName) {
+                          return '*Name can contain only alphabets';
                         }
                         return null;
                       },
                       decoration: kTextFieldDecoration.copyWith(
-                          hintText: 'Enter Company Email', labelText: 'Company Email'),
+                          hintText: 'Enter Company name',
+                          labelText: 'Company Name'),
+                    ),
+                    const SizedBox(height: 10.0),
+                    TextFormField(
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return '*Required Email';
+                        } else if (!value.isValidEmail) {
+                          return '*Please Enter a valid Email id';
+                        }
+                        return null;
+                      },
+                      decoration: kTextFieldDecoration.copyWith(
+                          hintText: 'Enter Company Email',
+                          labelText: 'Company Email'),
                     ),
                     const SizedBox(height: 10.0),
                     TextFormField(
@@ -93,7 +102,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         return null;
                       },
                       decoration: kTextFieldDecoration.copyWith(
-                          hintText: 'Street No/ Plot No', labelText: 'Street No/ Plot No'),
+                          hintText: 'Street No/ Plot No',
+                          labelText: 'Street No/ Plot No'),
                     ),
                     const SizedBox(height: 10.0),
                     TextFormField(
@@ -129,18 +139,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           hintText: 'Enter Pin code', labelText: 'Pin code'),
                     ),
                     const SizedBox(height: 10.0),
-                    RoundedButton(colour: const Color(0xff21b409), title: 'Register', onPressed: (){_key.currentState!.validate();}),
+                    RoundedButton(
+                        colour: const Color(0xff21b409),
+                        title: 'Register',
+                        onPressed: () {
+                          _key.currentState!.validate();
+                        }),
                   ],
                 ),
               ),
             ),
-
           ),
         ),
       ),
     );
   }
 }
-
-
-
