@@ -23,12 +23,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Catalog App'), backgroundColor: Colors.deepPurpleAccent, automaticallyImplyLeading: false,),
+      appBar: AppBar(
+        title: const Text('Catalog App'),
+        backgroundColor: Colors.deepPurpleAccent,
+        automaticallyImplyLeading: false,
+      ),
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: getDrawerWidget(
-            _selectedIndex, context,  updateState),
+        child: getDrawerWidget(_selectedIndex, context, updateState),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -36,6 +39,10 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.home),
             label: 'Home',
           ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.shopping_cart),
+          //   label: 'Cart',
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Profile',
@@ -45,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
         selectedItemColor: const Color(0xff21b409),
         onTap: (value) {
           setState(
-                () {
+            () {
               _selectedIndex = value;
             },
           );
