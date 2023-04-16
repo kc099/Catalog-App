@@ -16,14 +16,14 @@ class ProductItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(10.0),
       child: GridTile(
         footer: GridTileBar(
-          leading: IconButton(
-            icon: const Icon(Icons.favorite_border),
-            onPressed: () {},
-          ),
-          trailing: IconButton(
-            icon: const Icon(Icons.shopping_cart),
-            onPressed: () {},
-          ),
+          // leading: IconButton(
+          //   icon: const Icon(Icons.favorite_border),
+          //   onPressed: () {},
+          // ),
+          // trailing: IconButton(
+          //   icon: const Icon(Icons.shopping_cart),
+          //   onPressed: () {},
+          // ),
           title: Text(
             title,
             textAlign: TextAlign.center,
