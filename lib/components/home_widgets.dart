@@ -23,13 +23,17 @@ Widget _homeListView(BuildContext context, Function updateState) {
   return GridView.builder(
     padding: const EdgeInsets.all(10.0),
     itemCount: products.length,
-    itemBuilder: (ctx, i) => ProductItem(
-        id: products[i].id,
-        title: products[i].title,
-        imageurl: products[i].imageurl),
+    itemBuilder: (ctx, i) => ChangeNotifierProvider(
+    create: (c) => products[i],
+    child: ProductItem(
+      // products[i].id,
+      // products[i].title,
+      // products[i].imageUrl,
+    ),
+  ),
     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 3 / 2,
+        childAspectRatio: 0.8,
         crossAxisSpacing: 10.0,
         mainAxisSpacing: 10.0),
   );
